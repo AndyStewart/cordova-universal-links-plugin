@@ -1,3 +1,4 @@
+
 /*
  Script activates support for Universal Links in the application by setting proper preferences in the xcode project file.
  Which is:
@@ -8,6 +9,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var xcode = require('xcode');
 var compare = require('node-version-compare');
 var IOS_DEPLOYMENT_TARGET = '8.0';
 var COMMENT_KEY = /_comment$/;
@@ -59,8 +61,6 @@ function enableAssociativeDomainsCapability(context) {
  * - add .entitlements file to Code Sign Entitlements preference.
  */
 function activateAssociativeDomains(context, projFolder) {
-    var xcode = context.requireCordovaModule('xcode');
-
     var projectPath = path.join(projFolder, 'project.pbxproj');
     var pbxProject;
     if (context.opts.cordova.project) {
